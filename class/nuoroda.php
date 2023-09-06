@@ -23,8 +23,7 @@
 			if ( isset ( $_POST [ 'saugoti' ] ) && ( $_POST [ 'saugoti' ] =="Saugoti" ) ) {
 			
 				$saugoti = true;
-				
-				echo 'saugoti';
+																														//	echo 'saugoti';
 			}
 			return $saugoti;
 		}
@@ -40,10 +39,10 @@
 					, '" . $this -> pav . "'
 				)
 					";
+																														// echo $uzklausa;
+			$db -> uzklausa ( $uzklausa, 'last_insert_id' );
 
-			echo $uzklausa;
-			
-			$db -> uzklausa ( $uzklausa );	
+			$this -> id = $db -> last_insert_id;
 		}
 	}
 	

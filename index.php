@@ -119,16 +119,17 @@
 	</form>
 </section>
 <section id="nuorodu_sarasas">
+<?php
+		foreach ( $nuorodos -> sarasas as $nuoroda ) {
+?>
 	<div class="nuoroda">
-		<a href="https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Selectors/Selectors_Tasks" target="_blank">
-			Css selektoriai, testas - 5 užduotys, (angl.k)
+		<a href="<?= $nuoroda [ 'nuoroda' ] ?>" target="_blank">
+			<?= $nuoroda [ 'pav' ] ?>
 		</a>
 	</div>
-	<div class="nuoroda">
-		<a href="http://howtocodeinhtml.com/chapter0.html" target="_blank">
-			Html, css - pažintis, principai, 13 - žingsnių
-		</a>
-	</div>	
+<?php
+		}
+?>
 </section>
 </body>
 </html>
