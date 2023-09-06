@@ -46,6 +46,11 @@
 	</style>
 </head>
 <body>
+<?php
+	require 'main.php';
+	
+	
+?>
 <h1>Nuorodos</h1>
 <section id="paieska">
 		<div class="label">
