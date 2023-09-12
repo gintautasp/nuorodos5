@@ -9,9 +9,15 @@
 			font-size: 24px;
 		}
 		#nuorodu_sarasas, #nuorodos_ivedimas, #paieska {
-			margin-left: 5%;
+			display: block;
+			margin-left: 16%;
 		}
-		.nuoroda {
+		#kategoriju_sarasas {
+			float: left;
+			padding: 10px;
+			width: 15%;
+		}
+		.nuoroda, .kategorija {
 			padding: 5px 7px;
 		}
 		.label, .label1_3 {
@@ -21,7 +27,7 @@
 			margin-bottom: 7px;
 		}
 		label, input, hr {
-			width: 90%;
+			width: 80%;
 		}
 		input[type=checkbox] {
 			width: auto;
@@ -40,19 +46,44 @@
 			margin-right: 25%;			
 		}
 		.clear {
-			clear: both;
+			clear: right;
 			margin-bottom: 12px;
 		}
+		.kategorija a, .nuoroda a {
+			color: DarkCyan;
+			text-decoration: none;
+		}
+		.kategorija a:hover, .nuoroda a:hover {
+			color: DarkKhaki;
+			text-decoration: underline;
+		}		
 	</style>
 </head>
 <body>
 <?php
 	require 'main.php';
-	
-	
 ?>
+<section id="kategoriju_sarasas">
+	<div class="kategorija">
+		<a href="?cat=0" target="_self">
+			Visos kategorijos
+		</a>
+	</div>
+<?php
+		foreach ( $kategorijos -> sarasas as $kategorija ) {
+?>
+	<div class="kategorija">
+		<a href="?cat=<?= $kategorija [ 'id' ] ?>" target="_self">
+			<?= $kategorija [ 'pav' ] ?>
+		</a>
+	</div>
+<?php
+		}
+?>
+</section>
 <h1>Nuorodos</h1>
 <section id="paieska">
+	<form method="post" action="">
 		<div class="label">
 			<label for="paieskos_tekstas">Paieška</label>
 		</div>
@@ -60,17 +91,18 @@
 			<input type="search" name="paieskos_tekstas" id="paieskos_tekstas">
 		</div>
 		<div class="label">
-			<label for="paieskos_tekstas">Ieškoti pagal</label>
+			<label for="ieskoti_pagal">Ieškoti pagal</label>
 		</div>		
 		<div class="input">
-			<input type="checkbox" name="ieskoti_pagal" value="url" checked> - nuorodą
-			<input type="checkbox" name="ieskoti_pagal" value="url" checked> - nuorodos pavadinimą
-			<input type="checkbox" name="ieskoti_pagal" value="url" checked> - kategoriją
+			<input type="checkbox" name="ieskoti_pagal[]" value="url" checked> - nuorodą
+			<input type="checkbox" name="ieskoti_pagal[]" value="pav" checked> - nuorodos pavadinimą
+			<input type="checkbox" name="ieskoti_pagal[]" value="kat" checked> - kategoriją
 		</div>
 		<hr>
 		<div class="input">		
 			<input class="button" type="submit" name="ieskoti" value="Ieškoti">
 		</div>
+	</form>
 		<div class="clear"></div>
 </section>
 <section id="nuorodos_ivedimas">

@@ -11,8 +11,8 @@
 	include $main_dir . 'class/nuoroda.php';
 	include $main_dir . 'class/nuorodos.php';
 	include $main_dir . 'class/kategorija.php';
+	include $main_dir . 'class/kategorijos.php';	
 	include $main_dir . 'class/nuorodos_kategorijos.php';
-	
 	
 	$nuoroda = new Nuoroda();
 	
@@ -75,10 +75,23 @@
 	
 	if ( $nuorodos -> arVykdytiPaieska() ) {
 	
+		echo 'vykdom paieska';
+	
 		$nuorodos -> gautiPaieskosReiksmes();
 	}
 	
-	$nuorodos -> gautiSarasaIsDuomenuBazes();
+	$kategorijos_id = 0;
+	
+	if ( isset ( $_GET [ 'cat' ] ) ) {
+	
+		$kategorijos_id = $_GET [ 'cat' ];
+	}
+	
+	$nuorodos -> gautiSarasaIsDuomenuBazes( $kategorijos_id );
+	
+	$kategorijos = new Kategorijos();
+	
+	$kategorijos -> gautiSarasaIsDuomenuBazes();	
 	
 	
 	
