@@ -1,11 +1,12 @@
 <?php
 
-	class Nuoroda {
+	class Nuoroda extends ModelDbIrasas {
 	
 		public $id, $nuoroda, $pav, $kategorijos;
 		
 		public function __construct() {
 		
+			parent::__construct();
 		}
 		
 		public function gautiDuomenisIsFormos()  {
@@ -28,9 +29,7 @@
 			return $saugoti;
 		}
 		
-		public function issaugotiNuorodaDuomenuBazeje() {
-		
-			global $db;
+		public function issaugotiDuomenuBazeje() {
 			
 			$uzklausa =
 "
@@ -40,9 +39,9 @@
 				)
 					";
 																														// echo $uzklausa;
-			$db -> uzklausa ( $uzklausa, 'last_insert_id' );
+			$this -> db -> uzklausa ( $uzklausa, 'last_insert_id' );
 
-			$this -> id = $db -> last_insert_id;
+			$this -> id = $this -> db -> last_insert_id;
 		}
 	}
 	

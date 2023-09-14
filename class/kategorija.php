@@ -1,11 +1,12 @@
 <?php
 
-	class Kategorija {
+	class Kategorija extends ModelDbIrasas {
 	
 		public $id, $pav;    																	// čia reiktu pasipildyti !
 
 		public function __construct( $nr ) {
 		
+			parent::__construct();
 			$this -> pav = $_POST [ 'kategorija' . $nr ];
 		}
 																					// sukurti reikalingu metodu antrastes
@@ -20,12 +21,9 @@
 																														//	echo 'saugoti';
 			}
 			return $saugoti;
-		
 		}
 		
 		public function arYraTokiaKategorija ( $nr ) {
-		
-			global $db;	
 
 			$yra = false;
 		
@@ -38,7 +36,7 @@
 
 			// echo $uzklausa;
 			
-			$kategoriju_saraso_resursas = $db -> uzklausa ( $uzklausa );
+			$kategoriju_saraso_resursas = $this -> db -> uzklausa ( $uzklausa );
 			
 			if ( $gauta_kategorija =  mysqli_fetch_assoc ( $kategoriju_saraso_resursas ) ) {
 			
@@ -49,9 +47,7 @@
 			return $yra;
 		}
 																					
-		public function sukurtiKategorijaDuomenuBazeje () {
-		
-			global $db;
+		public function issaugotiDuomenuBazeje() {
 			
 			$uzklausa =
 "
@@ -60,8 +56,8 @@
 				)
 					";
 																														// echo $uzklausa;
-			$db -> uzklausa ( $uzklausa, 'last_insert_id' );
+			$this -> db -> uzklausa ( $uzklausa, 'last_insert_id' );
 
-			$this -> id = $db -> last_insert_id;		
+			$this -> id = $this -> db -> last_insert_id;		
 		}
 	}

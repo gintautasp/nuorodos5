@@ -5,6 +5,9 @@
 	include 'conf.php';
 	
 	include $conf [ 'dir_bendra' ] . 'duomenu_baze.class.php';
+	include  $conf [ 'dir_bendra' ] . 'model_db.class.php';
+	include  $conf [ 'dir_bendra' ] . 'model_db_irasas.class.php';
+	include  $conf [ 'dir_bendra' ] . 'model_db_sarasas.class.php';	
 
 	$db = new DuomenuBaze ( $conf [ 'name_db' ], $conf [ 'name_user_db' ], $conf [ 'password_user_db' ] );
 
@@ -22,7 +25,7 @@
 	
 		$nuoroda -> gautiDuomenisIsFormos();				// neparašiau praeitą kartą
 	
-		$nuoroda -> issaugotiNuorodaDuomenuBazeje();
+		$nuoroda -> issaugotiDuomenuBazeje();
 		
 		echo '. nuoroda sukurta, nuorodos id: ' . $nuoroda -> id . '<br>';
 		

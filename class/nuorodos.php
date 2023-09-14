@@ -1,11 +1,12 @@
 <?php
 
-	class Nuorodos {
+	class Nuorodos extends ModelDbSarasas {
 	
-		public $paieskos_tekstas = '', $ieskoti_pagal = array(), $sarasas = array();
+		public $paieskos_tekstas = '', $ieskoti_pagal = array(), $kategorijos_id = 0;
 		
 		public function __construct() {
 		
+			parent::__construct();
 		}		
 		
 		public function arVykdytiPaieska() {
@@ -29,10 +30,13 @@
 			
 			print_r ( $this -> ieskoti_pagal  );
 		}
-	
-		public function gautiSarasaIsDuomenuBazes( $kategorijos_id ) {
 		
-			global $db;
+		public function pasirinktiKategorija ( $kategorijos_id ) {
+		
+			$this -> kategorijos_id = $kategorijos_id;
+		}
+	
+		public function gautiSarasaIsDuomenuBazes() {
 			
 			$uzklausa =
 					"
@@ -51,12 +55,12 @@
 						1
 					";
 			
-			if ( intval ( $kategorijos_id ) > 0 ) {
+			if ( intval ( $this -> kategorijos_id ) > 0 ) {
 				
 				$uzklausa .= 
 					"
 					AND
-						`nuorodos_kategorijos`.`id_kategorijos`=" . $kategorijos_id . "
+						`nuorodos_kategorijos`.`id_kategorijos`=" . $this -> kategorijos_id . "
 					";
 			}
 			
@@ -108,7 +112,7 @@
 					`nuorodos`.`id`
 					";
 																														// echo $uzklausa;
-			$nuorodu_saraso_resursas = $db -> uzklausa ( $uzklausa );
+			$nuorodu_saraso_resursas = $this -> db -> uzklausa ( $uzklausa );
 			
 			while ( $nuoroda =  mysqli_fetch_assoc ( $nuorodu_saraso_resursas ) ) {
 
