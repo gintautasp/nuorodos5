@@ -17,6 +17,11 @@
 	include $main_dir . 'class/kategorijos.php';	
 	include $main_dir . 'class/nuorodos_kategorijos.php';
 	
+	include $conf [ 'dir_bendra' ] . 'controller.class.php';
+	include $main_dir . 'class/nuorodos_controller.php';
+
+	$nuorodos_controller = new NuorodosController( $main_dir );
+	
 	$nuoroda = new Nuoroda();
 	
 	if ( $nuoroda -> arSaugotiNaujaNuoroda() ) {
@@ -74,27 +79,7 @@
 		}
 	}	
 	
-	$nuorodos = new Nuorodos();
-	
-	if ( $nuorodos -> arVykdytiPaieska() ) {
-	
-		echo 'vykdom paieska';
-	
-		$nuorodos -> gautiPaieskosReiksmes();
-	}
-	
-	$kategorijos_id = 0;
-	
-	if ( isset ( $_GET [ 'cat' ] ) ) {
-	
-		$kategorijos_id = $_GET [ 'cat' ];
-	}
-	
-	$nuorodos -> gautiSarasaIsDuomenuBazes( $kategorijos_id );
-	
-	$kategorijos = new Kategorijos();
-	
-	$kategorijos -> gautiSarasaIsDuomenuBazes();	
+	$nuorodos_controller -> gautiDuomenis();
 	
 	
 	

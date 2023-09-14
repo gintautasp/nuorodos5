@@ -4,34 +4,19 @@
 	
 		public $id, $pav;    																	// čia reiktu pasipildyti !
 
-		public function __construct( $nr ) {
+		public function __construct( $kategorija ) {
 		
 			parent::__construct();
-			$this -> pav = $_POST [ 'kategorija' . $nr ];
+			$this -> pav = $kategorija;
 		}
 																					// sukurti reikalingu metodu antrastes
-																					
-		public function arSaugotiKategorija ( $nr ) {
-		
-			$saugoti = false;
-		
-			if ( isset ( $_POST [ 'kategorija' . $nr ] ) && ! empty ( trim ( $_POST [ 'kategorija' . $nr ] ) ) ) {
-			
-				$saugoti = true;
-																														//	echo 'saugoti';
-			}
-			return $saugoti;
-		}
-		
-		public function arYraTokiaKategorija ( $nr ) {
+		public function arYraTokiaKategorija () {
 
 			$yra = false;
-		
-			$kategorija = $_POST [ 'kategorija' . $nr ];
 			
 			$uzklausa =
 					"
-				SELECT * FROM `kategorijos` WHERE `pav`='" . $kategorija . "'
+				SELECT * FROM `kategorijos` WHERE `pav`='" . $this -> pav . "'
 					";
 
 			// echo $uzklausa;

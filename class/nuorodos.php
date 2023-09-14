@@ -7,28 +7,14 @@
 		public function __construct() {
 		
 			parent::__construct();
-		}		
-		
-		public function arVykdytiPaieska() {
-		
-			$ieskoti = false;
-		
-			if ( isset ( $_POST [ 'ieskoti' ] ) && ( $_POST [ 'ieskoti' ] =="Ieškoti" ) ) {
-			
-				$ieskoti = true;
-																														//	echo 'saugoti';
-			}		
-		
-			return $ieskoti;
 		}
 		
-		public function gautiPaieskosReiksmes() {
+		public function nustatytiPaieskosReiksmes( $paieskos_tekstas, $ieskoti_pagal ) {
 		
-			$this -> paieskos_tekstas = $_POST [ 'paieskos_tekstas' ];
+			$this -> paieskos_tekstas = $paieskos_tekstas;
 			
-			$this -> ieskoti_pagal = array_values ( $_POST [ 'ieskoti_pagal' ] );
-			
-			print_r ( $this -> ieskoti_pagal  );
+			$this -> ieskoti_pagal = array_values (  $ieskoti_pagal );
+																									// print_r ( $this -> ieskoti_pagal  );
 		}
 		
 		public function pasirinktiKategorija ( $kategorijos_id ) {

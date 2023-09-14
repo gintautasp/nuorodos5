@@ -4,29 +4,13 @@
 	
 		public $id, $nuoroda, $pav, $kategorijos;
 		
-		public function __construct() {
+		public function __construct( $nuoroda, $pav, $kategorijos ) {
+		
+			$this -> nuoroda = $nuoroda;
+			$this -> pav = $pav;
+			$this -> kategorijos = $kategorijos;
 		
 			parent::__construct();
-		}
-		
-		public function gautiDuomenisIsFormos()  {
-			
-			$this -> nuoroda = $_POST [ 'nuoroda' ];
-			$this -> pav = $_POST [ 'nuorodos_pav' ];
-			
-			$this -> kategorijos =  array ( $_POST [ 'kategorija1' ], $_POST [ 'kategorija2' ], $_POST [ 'kategorija3' ] );
-		}
-		
-		public function arSaugotiNaujaNuoroda() {
-			
-			$saugoti = false;
-		
-			if ( isset ( $_POST [ 'saugoti' ] ) && ( $_POST [ 'saugoti' ] =="Saugoti" ) ) {
-			
-				$saugoti = true;
-																														//	echo 'saugoti';
-			}
-			return $saugoti;
 		}
 		
 		public function issaugotiDuomenuBazeje() {
